@@ -37,24 +37,23 @@ function App() {
   };
   let message = "";
   const addTodo = async () => {
-    if (newTodo.length < 5) {
-      message = "Minimum length of task should be 5 letters!!";
-    } else {
-      const data = await fetch(API_BASE + "/todos", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          text: newTodo,
-        }),
-      }).then((res) => res.json());
-      newTodo = "";
-      console.log(data);
+    // if (newTodo.length < 5) {
+    //   message = "Minimum length of task should be 5 letters!!";
+    // } else {
+    const data = await fetch(API_BASE + "/todos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: newTodo,
+      }),
+    }).then((res) => res.json());
+    console.log(data);
 
-      setTodos([...todos, data]);
-      // setNewTodo = "";
-    }
+    setTodos([...todos, data]);
+    // setNewTodo = "";
+    // }
   };
 
   const removeTodo = async () => {
